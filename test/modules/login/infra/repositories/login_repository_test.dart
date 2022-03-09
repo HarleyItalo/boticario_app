@@ -18,10 +18,9 @@ void main() {
     expect(response.password != SecurityService.encript('123'), true);
   });
 
-  test("Deve fazer login com os dados enviados", () async {
+  test("Deve buscar o usuario", () async {
     var response = await repository
         .makeLogin(LoginModel(username: 'harley', password: '123'));
     expect(response.username, 'harley');
-    expect(response.password == SecurityService.encript('123'), true);
   });
 }
