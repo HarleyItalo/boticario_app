@@ -14,16 +14,6 @@ class NavigationService {
     );
   }
 
-  static void push(
-    page,
-  ) async {
-    await navigatorKey.currentState?.push(
-      MaterialPageRoute(
-        builder: (context) => page,
-      ),
-    );
-  }
-
   static void pushNamedAndRemoveUntil(
     String name, {
     Object? args,

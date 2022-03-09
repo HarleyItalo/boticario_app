@@ -1,5 +1,6 @@
-import 'package:boticario_app/modules/splash/views/splash_controller.dart';
 import 'package:flutter/material.dart';
+
+import '../controllers/splash_controller.dart';
 
 class SplashPage extends StatefulWidget {
   final SplashController controller;
