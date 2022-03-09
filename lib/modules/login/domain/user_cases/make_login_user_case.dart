@@ -1,7 +1,7 @@
 import 'package:boticario_app/common/services/security_service.dart';
 
-import '../../infra/repositories/login_repository.dart';
 import '../models/login_model.dart';
+import '../repositories/login_repository.dart';
 
 abstract class MakeLogin {
   Future<LoginModel> call({

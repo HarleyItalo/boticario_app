@@ -2,10 +2,10 @@ import 'package:boticario_app/common/services/http_service.dart';
 import 'package:boticario_app/modules/login/domain/models/login_model.dart';
 import 'package:boticario_app/modules/login/domain/repositories/login_repository.dart';
 
-class LoginRepository implements ILoginRepository {
+class LoginRepositoryImpl implements LoginRepository {
   final IHttpService _httpService;
 
-  LoginRepository(this._httpService);
+  LoginRepositoryImpl(this._httpService);
 
   @override
   Future<LoginModel> makeLogin(LoginModel loginModel) async {
