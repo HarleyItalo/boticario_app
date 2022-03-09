@@ -9,13 +9,13 @@ abstract class IHttpService {
 }
 
 class DioHttpService implements IHttpService {
-  DioHttpService(this._client);
-
+  DioHttpService(this._client, this.baseUrl);
+  final String baseUrl;
   final Dio _client;
 
   @override
   Future<Map<String, dynamic>> delete(url) async {
-    var response = await _client.delete(url);
+    var response = await _client.delete("$baseUrl/$url");
     if (response.statusCode != 200) {
       throw RequestError("Delete without success");
     }
@@ -24,7 +24,9 @@ class DioHttpService implements IHttpService {
 
   @override
   Future<Map<String, dynamic>> get(url) async {
-    var response = await _client.get(url);
+    var callUrl = "$baseUrl/$url";
+    var response = await _client.get(callUrl);
+    print(response.data);
     if (response.statusCode != 200) {
       throw RequestError("Get without success");
     }
@@ -33,7 +35,7 @@ class DioHttpService implements IHttpService {
 
   @override
   Future<Map<String, dynamic>> post(url) async {
-    var response = await _client.post(url);
+    var response = await _client.post("$baseUrl/$url.json");
     if (response.statusCode != 201) {
       throw RequestError("Post without success");
     }
@@ -42,7 +44,7 @@ class DioHttpService implements IHttpService {
 
   @override
   Future<Map<String, dynamic>> put(url) async {
-    var response = await _client.post(url);
+    var response = await _client.post("$baseUrl/$url.json");
     if (response.statusCode != 201) {
       throw RequestError("Put without success");
     }
