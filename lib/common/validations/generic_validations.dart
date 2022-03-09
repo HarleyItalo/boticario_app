@@ -1,5 +1,5 @@
-class GenericValidations {
-  static bool emailIsValid(String email) {
+abstract class GenericValidations {
+  bool emailIsValid(String email) {
     if (isNullOrEmpty(email)) {
       return false;
     }
@@ -8,7 +8,7 @@ class GenericValidations {
         .hasMatch(email);
   }
 
-  static bool isNullOrEmpty(String? value, {int minLenght = 2}) {
+  bool isNullOrEmpty(String? value, {int minLenght = 2}) {
     if (value == null || value.isEmpty) {
       return true;
     }

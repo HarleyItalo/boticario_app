@@ -1,3 +1,5 @@
+import 'package:boticario_app/modules/login/views/login_page/validations/password_validadation.dart';
+import 'package:boticario_app/modules/login/views/login_page/validations/username_validation.dart';
 import 'package:flutter/material.dart';
 import '../../../../common/widgets/default_button.dart';
 import '../../../../common/widgets/text_input_widget.dart';
@@ -43,6 +45,7 @@ class _LoginPageState extends State<LoginPage> {
                       value: widget.controller.user.value,
                       labelText: 'Login:',
                       placeholder: 'Seu usuário',
+                      validate: (value) => UsernameValidation()(value),
                     ),
                     TextInputWidget(
                       isObscure: seePass,
@@ -50,9 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                       value: widget.controller.password.value,
                       labelText: 'Senha:',
                       placeholder: '* * * *',
-                      // validate: (value) => StringUtil.isNullOrEmpty(value)
-                      //     ? "Digite sua senha"
-                      //     : null,
+                      validate: (value) => PasswordValidation()(value),
                       suffix: IconButton(
                         icon:
                             Icon(!seePass ? Icons.remove_red_eye : Icons.close),

@@ -1,30 +1,27 @@
 import 'package:boticario_app/common/services/http_service.dart';
+import 'package:boticario_app/common/services/security_service.dart';
 import 'package:boticario_app/modules/login/domain/models/login_model.dart';
 import 'package:boticario_app/modules/login/infra/repositories/login_repository.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
-import '../../../../mocks/dio_mock.dart';
 
 void main() {
-  final dioClient = DioMock();
-  var dioMock = DioHttpService(dioClient, "");
+  final dioClient = Dio();
+  var dioMock =
+      DioHttpService(dioClient, "https://622925e0be12fc4538979da3.mockapi.io/");
   LoginRepository repository = LoginRepository(dioMock);
 
-  test("Deve fazer Login com os dados enviados", () async {
-    when(dioMock.get("login")).thenAnswer((_) async => <String, dynamic>{});
-    when(dioClient.get("login")).thenAnswer((_) async {
-      return Future(
-        () => Response(
-          statusCode: 200,
-          data: <String, dynamic>{},
-          requestOptions: RequestOptions(path: ''),
-        ),
-      );
-    });
-
+  test("Deve falhar ao fazer login com os dados enviados", () async {
     var response = await repository
         .makeLogin(LoginModel(username: 'harley', password: '123'));
-    assert(response, true);
+    expect(response.username, 'harley');
+    expect(response.password != SecurityService.encript('123'), true);
+  });
+
+  test("Deve fazer login com os dados enviados", () async {
+    var response = await repository
+        .makeLogin(LoginModel(username: 'harley', password: '123'));
+    expect(response.username, 'harley');
+    expect(response.password == SecurityService.encript('123'), true);
   });
 }
