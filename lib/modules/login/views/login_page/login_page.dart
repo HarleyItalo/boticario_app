@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                       validate: (value) => PasswordValidation()(value),
                       suffix: IconButton(
                         icon:
-                            Icon(!seePass ? Icons.remove_red_eye : Icons.close),
+                            Icon(!seePass ? Icons.close : Icons.remove_red_eye),
                         onPressed: () {
                           setState(() {
                             seePass = !seePass;
@@ -69,7 +69,9 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     DefaultButton(
                       onPress: () async {
-                        if (_formKey.currentState?.validate() == true) {}
+                        if (_formKey.currentState?.validate() == true) {
+                          widget.controller.makeLogin();
+                        }
                       },
                       buttonText: 'Logar agora',
                     ),

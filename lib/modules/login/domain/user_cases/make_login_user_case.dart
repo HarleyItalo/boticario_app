@@ -4,7 +4,7 @@ import '../models/login_model.dart';
 import '../repositories/login_repository.dart';
 
 abstract class MakeLogin {
-  Future<LoginModel> call({
+  Future<LoginModel?> call({
     required String username,
     required String password,
   });
@@ -15,9 +15,9 @@ class MakeLoginImpl extends MakeLogin {
   MakeLoginImpl(this._repository);
 
   @override
-  Future<LoginModel> call(
+  Future<LoginModel?> call(
       {required String username, required String password}) async {
-    return await _repository.makeLogin(
+    return await _repository.findUser(
       LoginModel(
         username: username,
         password: SecurityService.encript(password),

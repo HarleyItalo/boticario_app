@@ -8,7 +8,7 @@ import 'package:dio/dio.dart';
 class InitModules {
   init() {
     DependencyService.lazyRegister(Dio());
-    DependencyService.lazyRegister(
+    DependencyService.lazyRegister<IHttpService>(
         DioHttpService(DependencyService.instance(), urlApi));
     SplashModule().registerModule();
     LoginModule().registerModule();

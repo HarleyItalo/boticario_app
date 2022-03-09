@@ -84,7 +84,7 @@ class _SplashPageState extends State<SplashPage>
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
                 Text(
-                  'by Harley',
+                  'by Harley italo',
                   style: Theme.of(context).textTheme.overline,
                 )
               ],

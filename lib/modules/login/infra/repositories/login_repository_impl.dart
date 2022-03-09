@@ -8,18 +8,17 @@ class LoginRepositoryImpl implements LoginRepository {
   LoginRepositoryImpl(this._httpService);
 
   @override
-  Future<LoginModel> makeLogin(LoginModel loginModel) async {
+  Future<LoginModel?> findUser(LoginModel loginModel) async {
     var response = await _httpService.get(
       "users?username=${loginModel.username}&password=${loginModel.password}",
     );
     if (response is List) {
+      if (response.isEmpty) {
+        return null;
+      }
       response = response.first;
     }
-    return LoginModel.fromJson(response);
-  }
 
-  @override
-  Future<bool> makeLogout() async {
-    return true;
+    return LoginModel.fromJson(response);
   }
 }
