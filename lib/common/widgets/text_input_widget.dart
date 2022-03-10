@@ -14,6 +14,7 @@ class TextInputWidget extends StatelessWidget {
   final Widget? suffix;
   final bool autoFocus;
   final TextAlign? inputTextAlign;
+  final FocusNode? focusNode;
 
   const TextInputWidget(
       {Key? key,
@@ -29,7 +30,8 @@ class TextInputWidget extends StatelessWidget {
       this.inputTextAlign,
       this.isObscure = false,
       this.autoFocus = false,
-      this.placeholder = ''})
+      this.placeholder = '',
+      this.focusNode})
       : super(key: key);
 
   @override
@@ -39,6 +41,7 @@ class TextInputWidget extends StatelessWidget {
       controller: mountController(),
       enableSuggestions: true,
       autofocus: autoFocus,
+      focusNode: focusNode,
       autocorrect: false,
       validator: validate,
       decoration: InputDecoration(

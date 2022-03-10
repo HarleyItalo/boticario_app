@@ -49,7 +49,6 @@ class _SplashPageState extends State<SplashPage>
   Widget build(BuildContext context) {
     startAnimation();
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
