@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
           SliverToBoxAdapter(
             child: Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
+                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 30),
               child: Form(
                 key: _formKey,
                 child: Column(
@@ -83,11 +83,11 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     }),
                     Padding(
-                      padding: const EdgeInsets.all(25.0),
+                      padding: const EdgeInsets.all(40.0),
                       child: TextButton(
                         onPressed: widget.controller.navigateToRegister,
                         child: const Text(
-                          'Ainda não tem cadastro?\n Cadastre agora',
+                          'Ainda não tem cadastro?\nJunte-se a nós',
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -103,16 +103,18 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   processLogin() async {
-    if (_formKey.currentState?.validate() == true) {
-      var reponse = await widget.controller.makeLogin();
-      if (reponse) {
-        return;
-      }
-      AlertService.sendSnackBar(
-          context: context,
-          error: true,
-          message: 'Usuario ou Senha incorretos tente novamente.',
-          onPressed: () {});
+    if (_formKey.currentState?.validate() == false) {
+      return;
     }
+
+    var reponse = await widget.controller.makeLogin();
+    if (reponse) {
+      return;
+    }
+    AlertService.sendSnackBar(
+        context: context,
+        error: true,
+        message: 'Usuario ou Senha incorretos tente novamente.',
+        onPressed: () {});
   }
 }

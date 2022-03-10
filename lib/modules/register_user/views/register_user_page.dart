@@ -120,9 +120,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                         return const Center(child: CircularProgressIndicator());
                       }
                       return DefaultButton(
-                        onPress: () {
-                          if (_formKey.currentState?.validate() == true) {}
-                        },
+                        onPress: processRegister,
                         buttonText: 'Cadastrar-se',
                       );
                     }),
@@ -134,5 +132,11 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
         ],
       ),
     );
+  }
+
+  processRegister() {
+    if (_formKey.currentState?.validate() == false) {
+      return;
+    }
   }
 }
