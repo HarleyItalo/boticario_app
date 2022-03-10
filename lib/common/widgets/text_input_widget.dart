@@ -13,26 +13,32 @@ class TextInputWidget extends StatelessWidget {
   final String? prefix;
   final Widget? suffix;
   final bool autoFocus;
+  final int? maxLength;
+  final int? minLines;
+  final int? maxLines;
   final TextAlign? inputTextAlign;
   final FocusNode? focusNode;
 
-  const TextInputWidget(
-      {Key? key,
-      required this.labelText,
-      this.icon,
-      required this.onChanged,
-      this.keyboardtype = TextInputType.text,
-      this.value,
-      this.validate,
-      this.prefix,
-      this.mask = "",
-      this.suffix,
-      this.inputTextAlign,
-      this.isObscure = false,
-      this.autoFocus = false,
-      this.placeholder = '',
-      this.focusNode})
-      : super(key: key);
+  const TextInputWidget({
+    Key? key,
+    required this.labelText,
+    this.icon,
+    required this.onChanged,
+    this.keyboardtype = TextInputType.text,
+    this.value,
+    this.validate,
+    this.prefix,
+    this.mask = "",
+    this.suffix,
+    this.inputTextAlign,
+    this.isObscure = false,
+    this.autoFocus = false,
+    this.placeholder = '',
+    this.focusNode,
+    this.maxLength,
+    this.minLines,
+    this.maxLines = 1,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +50,9 @@ class TextInputWidget extends StatelessWidget {
       focusNode: focusNode,
       autocorrect: false,
       validator: validate,
+      maxLength: maxLength,
+      minLines: minLines,
+      maxLines: maxLines,
       decoration: InputDecoration(
         labelText: labelText,
         prefixText: prefix,

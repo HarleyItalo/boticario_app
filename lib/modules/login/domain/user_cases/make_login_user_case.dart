@@ -1,4 +1,5 @@
 import 'package:boticario_app/common/services/security_service.dart';
+import 'package:boticario_app/common/services/storage_service.dart';
 import 'package:boticario_app/modules/login/domain/errors/not_logged_exception.dart';
 
 import '../models/login_model.dart';
@@ -26,6 +27,7 @@ class MakeLoginImpl extends MakeLogin {
     );
     if (response?.username == username &&
         response?.password == SecurityService.encript(password)) {
+      StorageService.setData("loginData", response);
       return true;
     }
     throw NotLoggedException();
