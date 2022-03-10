@@ -12,6 +12,10 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme:
+            ThemeData.dark().colorScheme.copyWith(primary: Colors.green),
+      ),
       debugShowCheckedModeBanner: false,
       navigatorKey: NavigationService.navigatorKey,
       routes: Routes.getRoutes,
