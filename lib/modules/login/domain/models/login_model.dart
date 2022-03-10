@@ -8,7 +8,7 @@ class LoginModel {
   LoginModel.fromJson(Map<String, dynamic> json) {
     username = json['username'];
     password = json['password'];
-    id = json[id];
+    id = json['id'];
   }
 
   Map<String, dynamic> toJson() {

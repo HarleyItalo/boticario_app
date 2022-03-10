@@ -8,7 +8,8 @@ import 'controllers/splash_controller.dart';
 class SplashModule extends BaseModule {
   @override
   registerModule() {
-    DependencyService.lazyRegister(SplashController());
+    DependencyService.lazyRegister(
+        SplashController(DependencyService.instance()));
     DependencyService.lazyRegister(
         SplashPage(controller: DependencyService.instance()));
   }

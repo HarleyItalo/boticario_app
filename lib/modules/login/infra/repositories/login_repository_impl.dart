@@ -33,4 +33,9 @@ class LoginRepositoryImpl implements LoginRepository {
     }
     return null;
   }
+
+  @override
+  Future<bool> makeLogout() async {
+    return await StorageService.dropKey(loginKey);
+  }
 }

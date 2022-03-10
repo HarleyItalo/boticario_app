@@ -32,4 +32,13 @@ class StorageService {
       return false;
     }
   }
+
+  static Future<bool> dropKey(key) async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      return await prefs.remove(key);
+    } catch (e) {
+      return false;
+    }
+  }
 }

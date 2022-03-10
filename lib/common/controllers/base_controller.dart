@@ -2,10 +2,6 @@ import 'package:get/get.dart';
 import '../enuns/controller_state.dart';
 
 abstract class BaseController extends GetxController {
-  BaseController() {
-    init();
-  }
-
   final _state = ControllerState.done.obs;
 
   changeState(ControllerState newState) {

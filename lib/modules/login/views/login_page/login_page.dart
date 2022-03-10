@@ -1,6 +1,8 @@
 import 'package:boticario_app/common/enuns/controller_state.dart';
 import 'package:boticario_app/common/services/alert_service.dart';
+import 'package:boticario_app/common/services/navigation_service.dart';
 import 'package:boticario_app/common/widgets/observable.dart';
+import 'package:boticario_app/modules/app/routes/routes.dart';
 import 'package:boticario_app/modules/login/views/login_page/validations/password_validadation.dart';
 import 'package:boticario_app/modules/login/views/login_page/validations/username_validation.dart';
 import 'package:flutter/material.dart';
@@ -107,6 +109,7 @@ class _LoginPageState extends State<LoginPage> {
 
     var reponse = await widget.controller.makeLogin();
     if (reponse) {
+      NavigationService.pushNamed(Routes.news);
       return;
     }
     AlertService.sendSnackBar(

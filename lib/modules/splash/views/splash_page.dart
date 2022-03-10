@@ -17,7 +17,7 @@ class _SplashPageState extends State<SplashPage>
   void initState() {
     mountController();
     startAnimation();
-    widget.controller.navigate();
+    widget.controller.init();
     super.initState();
   }
 

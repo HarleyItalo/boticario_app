@@ -1,7 +1,9 @@
 import 'package:boticario_app/common/dependency_inject/dependency_inject.dart';
 import 'package:boticario_app/common/module/base_module.dart';
 import 'package:boticario_app/modules/login/controllers/login_controller.dart';
+import 'package:boticario_app/modules/login/domain/user_cases/check_if_is_logged.dart';
 import 'package:boticario_app/modules/login/domain/user_cases/make_login_user_case.dart';
+import 'package:boticario_app/modules/login/domain/user_cases/make_logout.dart';
 import 'package:boticario_app/modules/login/infra/repositories/login_repository_impl.dart';
 import 'package:boticario_app/modules/login/views/login_page/login_page.dart';
 
@@ -14,9 +16,13 @@ class LoginModule implements BaseModule {
         LoginRepositoryImpl(DependencyService.instance()));
     DependencyService.lazyRegister<MakeLogin>(
         MakeLoginImpl(DependencyService.instance()));
+    DependencyService.lazyRegister<CheckIfIsLogged>(
+        CheckIfIsLoggedImpl(DependencyService.instance()));
     DependencyService.lazyRegister(
         LoginController(DependencyService.instance()));
     DependencyService.lazyRegister(
         LoginPage(controller: DependencyService.instance()));
+    DependencyService.lazyRegister<MakeLogout>(
+        MakeLogoutImpl(DependencyService.instance()));
   }
 }
