@@ -1,10 +1,11 @@
 import 'package:boticario_app/common/services/security_service.dart';
+import 'package:boticario_app/modules/login/domain/errors/not_logged_exception.dart';
 
 import '../models/login_model.dart';
 import '../repositories/login_repository.dart';
 
 abstract class MakeLogin {
-  Future<LoginModel?> call({
+  Future<bool> call({
     required String username,
     required String password,
   });
@@ -15,13 +16,18 @@ class MakeLoginImpl extends MakeLogin {
   MakeLoginImpl(this._repository);
 
   @override
-  Future<LoginModel?> call(
+  Future<bool> call(
       {required String username, required String password}) async {
-    return await _repository.findUser(
+    var response = await _repository.findUser(
       LoginModel(
         username: username,
         password: SecurityService.encript(password),
       ),
     );
+    if (response?.username == username &&
+        response?.password == SecurityService.encript(password)) {
+      return true;
+    }
+    throw NotLoggedException();
   }
 }

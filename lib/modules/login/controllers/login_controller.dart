@@ -1,5 +1,6 @@
 import 'package:boticario_app/common/controllers/base_controller.dart';
 import 'package:boticario_app/common/services/navigation_service.dart';
+import 'package:boticario_app/modules/login/domain/errors/not_logged_exception.dart';
 import 'package:boticario_app/modules/login/domain/user_cases/make_login_user_case.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,18 @@ class LoginController extends BaseController {
   }
 
   makeLogin() async {
-    await _makeLogin(username: user.value, password: password.value);
+    try {
+      loadingState();
+      var success =
+          await _makeLogin(username: user.value, password: password.value);
+
+      succeedState();
+
+      return success;
+    } on NotLoggedException {
+      errorState();
+      return false;
+    }
   }
 
   @override

@@ -1,3 +1,6 @@
+import 'package:boticario_app/common/enuns/controller_state.dart';
+import 'package:boticario_app/common/services/alert_service.dart';
+import 'package:boticario_app/common/widgets/observable.dart';
 import 'package:boticario_app/modules/login/views/login_page/validations/password_validadation.dart';
 import 'package:boticario_app/modules/login/views/login_page/validations/username_validation.dart';
 import 'package:flutter/material.dart';
@@ -67,14 +70,16 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    DefaultButton(
-                      onPress: () async {
-                        if (_formKey.currentState?.validate() == true) {
-                          widget.controller.makeLogin();
-                        }
-                      },
-                      buttonText: 'Logar agora',
-                    ),
+                    Observable(() {
+                      if (widget.controller
+                          .stateEqualsTo(ControllerState.loading)) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+                      return DefaultButton(
+                        onPress: processLogin,
+                        buttonText: 'Logar agora',
+                      );
+                    }),
                     Padding(
                       padding: const EdgeInsets.all(25.0),
                       child: TextButton(
@@ -93,5 +98,19 @@ class _LoginPageState extends State<LoginPage> {
         ],
       ),
     );
+  }
+
+  processLogin() async {
+    if (_formKey.currentState?.validate() == true) {
+      var reponse = await widget.controller.makeLogin();
+      if (reponse) {
+        return;
+      }
+      AlertService.sendSnackBar(
+          context: context,
+          error: true,
+          message: 'Usuario ou Senha incorretos tente novamente.',
+          onPressed: () {});
+    }
   }
 }
