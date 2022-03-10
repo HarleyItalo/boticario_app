@@ -3,9 +3,9 @@ import 'package:dio/dio.dart';
 
 abstract class IHttpService {
   Future<dynamic> get(url);
-  Future<Map<String, dynamic>> post(url);
+  Future<Map<String, dynamic>> post(url, data);
   Future<Map<String, dynamic>> put(url);
-  Future<Map<String, dynamic>> delete(url);
+  Future<bool> delete(url);
 }
 
 class DioHttpService implements IHttpService {
@@ -14,18 +14,14 @@ class DioHttpService implements IHttpService {
   final Dio _client;
 
   @override
-  Future<Map<String, dynamic>> delete(url) async {
+  Future<bool> delete(url) async {
     var response = await _client.delete("$baseUrl/$url");
-    if (response.statusCode != 200) {
-      throw RequestError("Delete without success");
-    }
-    return response.data;
+    return response.statusCode == 200;
   }
 
   @override
   Future<dynamic> get(url) async {
-    var callUrl = "$baseUrl/$url";
-    var response = await _client.get(callUrl);
+    var response = await _client.get("$baseUrl/$url");
     if (response.statusCode != 200) {
       throw RequestError("Get without success");
     }
@@ -33,8 +29,8 @@ class DioHttpService implements IHttpService {
   }
 
   @override
-  Future<Map<String, dynamic>> post(url) async {
-    var response = await _client.post("$baseUrl/$url.json");
+  Future<Map<String, dynamic>> post(url, data) async {
+    var response = await _client.post("$baseUrl/$url", data: data);
     if (response.statusCode != 201) {
       throw RequestError("Post without success");
     }

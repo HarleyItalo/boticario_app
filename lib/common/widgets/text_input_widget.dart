@@ -60,6 +60,9 @@ class TextInputWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            const SizedBox(
+              height: 20,
+            ),
             field,
             const SizedBox(
               height: 20,

@@ -9,8 +9,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  mobx: ^2.0.6+1
-  flutter_mobx: ^2.0.4
   dio: ^4.0.4
   get: ^4.6.1
   crypto: ^3.0.1

@@ -71,7 +71,7 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                       onChanged: widget.controller.setUser,
                       value: widget.controller.user.value,
                       labelText: 'Nome de usuário',
-                      placeholder: 'Seu usuário',
+                      placeholder: 'Seu nome usuário',
                       validate: (value) => ValidateUser()(value),
                     ),
                     TextInputWidget(

@@ -1,0 +1,1 @@
+class UserNameInUseException implements Exception {}
