@@ -11,10 +11,12 @@ void main() {
       DioHttpService(dioClient, "https://622925e0be12fc4538979da3.mockapi.io/");
   final repository = RegisterUserRepositoryImpl(dioMock);
   final userCase = RegisterUserImpl(repository);
-  test("deve falhar ao cadastrar o usuario ", () {
+  test("deve falhar ao cadastrar o usuario ", () async {
     try {
+      var user = await userCase(
+          email: 'a', nome: 'h', userName: 'harley', password: '123');
       userCase(email: 'a', nome: 'h', userName: 'harley', password: '123');
-      userCase(email: 'a', nome: 'h', userName: 'harley', password: '123');
+      expect(await repository.deleteUser(user!), true);
     } on UserNameInUseException catch (e) {
       expect(e, isA<UserNameInUseException>());
     }
@@ -22,7 +24,7 @@ void main() {
   test('deve registrar um novo usuario', () async {
     var response = await userCase(
         email: 'a', nome: 'h', userName: 'jonas', password: '123');
-    expect(response != null, true);
-    repository.deleteUser(response!);
+    expect(await repository.deleteUser(response!), true);
+    expect(response.isNotEmpty, true);
   });
 }
