@@ -6,9 +6,14 @@ class RegisteUserController extends BaseController {
   var user = "".obs;
   var password = "".obs;
   var confirmationPass = "".obs;
+  var email = "".obs;
 
   setUser(String value) {
     user.value = value;
+  }
+
+  setEmail(String value) {
+    email.value = value;
   }
 
   setPassword(String value) {

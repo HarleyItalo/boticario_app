@@ -1,11 +1,13 @@
 import 'package:boticario_app/common/enuns/controller_state.dart';
 import 'package:boticario_app/common/services/alert_service.dart';
+import 'package:boticario_app/common/services/navigation_service.dart';
 import 'package:boticario_app/common/widgets/observable.dart';
 import 'package:boticario_app/modules/login/views/login_page/validations/password_validadation.dart';
 import 'package:boticario_app/modules/login/views/login_page/validations/username_validation.dart';
 import 'package:flutter/material.dart';
 import '../../../../common/widgets/default_button.dart';
 import '../../../../common/widgets/text_input_widget.dart';
+import '../../../app/routes/routes.dart';
 import '../../controllers/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
