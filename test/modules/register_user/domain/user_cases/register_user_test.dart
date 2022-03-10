@@ -15,8 +15,10 @@ void main() {
     try {
       var user = await userCase(
           email: 'a', nome: 'h', userName: 'harley', password: '123');
-      userCase(email: 'a', nome: 'h', userName: 'harley', password: '123');
+      var user1 = await userCase(
+          email: 'a', nome: 'h', userName: 'harley', password: '123');
       expect(await repository.deleteUser(user!), true);
+      expect(await repository.deleteUser(user1!), true);
     } on UserNameInUseException catch (e) {
       expect(e, isA<UserNameInUseException>());
     }
