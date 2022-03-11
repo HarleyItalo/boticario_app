@@ -6,6 +6,8 @@ import 'package:boticario_app/modules/login/domain/user_cases/make_logout.dart';
 import 'package:boticario_app/modules/news/controllers/news_controller.dart';
 import 'package:flutter/material.dart';
 
+import 'menu_item_tile.dart';
+
 class DrawerMenu extends StatelessWidget {
   final NewsController controller;
   const DrawerMenu({
@@ -16,30 +18,44 @@ class DrawerMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Observable(
-            () => Text(
-              "Olá ${controller.userData.value.username}!",
-              style: Theme.of(context).textTheme.headline5,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-        ListTile(
-          title: const Text('News'),
-          onTap: () {},
-        ),
-        ListTile(
-          title: const Text('Sair'),
-          onTap: () {
-            var logout = DependencyService.instance<MakeLogout>();
-            logout();
-            NavigationService.pushReplacementNamed(Routes.login);
-          },
-        ),
-      ]),
+      child: SafeArea(
+        child: ListView(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Observable(
+                  () => Text(
+                    "Olá ${controller.userData.value.username ?? ''}!",
+                    style: Theme.of(context).textTheme.headline5,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              MenuItemTile(
+                icon: Icons.fiber_new,
+                action: () {},
+                title: "Novidades GB",
+              ),
+              MenuItemTile(
+                icon: Icons.new_releases,
+                action: () {},
+                title: "Postagens",
+              ),
+              MenuItemTile(
+                title: "Sair",
+                action: () {
+                  var logout = DependencyService.instance<MakeLogout>();
+                  logout();
+                  NavigationService.pushReplacementNamed(Routes.login);
+                },
+                icon: Icons.exit_to_app,
+              )
+            ]),
+      ),
     );
   }
 }
