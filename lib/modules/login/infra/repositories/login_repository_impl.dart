@@ -2,6 +2,7 @@ import 'package:boticario_app/common/services/http_service.dart';
 import 'package:boticario_app/common/services/storage_service.dart';
 import 'package:boticario_app/modules/login/domain/models/login_model.dart';
 import 'package:boticario_app/modules/login/domain/repositories/login_repository.dart';
+import 'package:boticario_app/modules/register_user/domain/models/register_user_model.dart';
 
 import '../../../app/constants.dart';
 
@@ -11,7 +12,7 @@ class LoginRepositoryImpl implements LoginRepository {
   LoginRepositoryImpl(this._httpService);
 
   @override
-  Future<LoginModel?> findUser(LoginModel loginModel) async {
+  Future<UserModel?> findUser(LoginModel loginModel) async {
     var response = await _httpService.get(
       "users?username=${loginModel.username}&password=${loginModel.password}",
     );
@@ -22,7 +23,7 @@ class LoginRepositoryImpl implements LoginRepository {
       response = response.first;
     }
 
-    return LoginModel.fromJson(response);
+    return UserModel.fromJson(response);
   }
 
   @override

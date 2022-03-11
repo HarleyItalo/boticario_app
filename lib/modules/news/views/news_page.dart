@@ -1,6 +1,5 @@
 import 'package:boticario_app/common/enuns/controller_state.dart';
 import 'package:boticario_app/common/widgets/observable.dart';
-import 'package:boticario_app/modules/news/widgets/drawer_menu.dart';
 import 'package:boticario_app/modules/news/widgets/news_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -18,16 +17,13 @@ class NewsPage extends StatefulWidget {
 class _NewsPageState extends State<NewsPage> {
   @override
   void initState() {
-    widget.controller.init();
     super.initState();
+    widget.controller.init();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: DrawerMenu(
-        controller: widget.controller,
-      ),
       body: CustomScrollView(
         slivers: [
           const SliverAppBar(

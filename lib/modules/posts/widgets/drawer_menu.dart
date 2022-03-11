@@ -3,13 +3,13 @@ import 'package:boticario_app/common/services/navigation_service.dart';
 import 'package:boticario_app/common/widgets/observable.dart';
 import 'package:boticario_app/modules/app/routes/routes.dart';
 import 'package:boticario_app/modules/login/domain/user_cases/make_logout.dart';
-import 'package:boticario_app/modules/news/controllers/news_controller.dart';
+import 'package:boticario_app/modules/posts/controllers/all_posts_controller.dart';
 import 'package:flutter/material.dart';
 
-import 'menu_item_tile.dart';
+import '../../news/widgets/menu_item_tile.dart';
 
 class DrawerMenu extends StatelessWidget {
-  final NewsController controller;
+  final AllPostsController controller;
   const DrawerMenu({
     Key? key,
     required this.controller,
@@ -37,7 +37,9 @@ class DrawerMenu extends StatelessWidget {
               ),
               MenuItemTile(
                 icon: Icons.fiber_new,
-                action: () {},
+                action: () {
+                  NavigationService.pushNamed(Routes.news);
+                },
                 title: "Novidades GB",
               ),
               MenuItemTile(

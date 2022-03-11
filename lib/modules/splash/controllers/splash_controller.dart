@@ -15,7 +15,7 @@ class SplashController extends BaseController {
 
     final user = await checkIfIsLogged();
     if (user != null) {
-      NavigationService.pushNamedAndRemoveUntil(Routes.news);
+      NavigationService.pushNamedAndRemoveUntil(Routes.allPosts);
       return;
     }
     NavigationService.pushNamedAndRemoveUntil(Routes.login);

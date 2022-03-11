@@ -3,6 +3,7 @@ import 'package:boticario_app/common/services/http_service.dart';
 import 'package:boticario_app/modules/app/constants.dart';
 import 'package:boticario_app/modules/login/login_module.dart';
 import 'package:boticario_app/modules/news/news_module.dart';
+import 'package:boticario_app/modules/posts/posts_module.dart';
 import 'package:boticario_app/modules/register_user/register_user_module.dart';
 import 'package:boticario_app/modules/splash/splash_module.dart';
 import 'package:dio/dio.dart';
@@ -17,5 +18,6 @@ class InitModules {
     SplashModule().registerModule();
     RegisterUserModule().registerModule();
     NewsModule().registerModule();
+    PostsModule().registerModule();
   }
 }

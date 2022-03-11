@@ -26,7 +26,7 @@ class RegisterUserImpl extends RegisterUser {
       throw UserNameInUseException();
     }
 
-    var model = RegisterUserModel(
+    var model = UserModel(
         email: email,
         nome: nome,
         password: SecurityService.encript(password),

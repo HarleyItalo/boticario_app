@@ -7,9 +7,9 @@ class RegisterUserRepositoryImpl implements RegisterUserRepository {
   RegisterUserRepositoryImpl(this._httpService);
   final IHttpService _httpService;
   @override
-  Future<RegisterUserModel> registerUser(RegisterUserModel userModel) async {
+  Future<UserModel> registerUser(UserModel userModel) async {
     var result = await _httpService.post('users', userModel);
-    return RegisterUserModel.fromJson(result);
+    return UserModel.fromJson(result);
   }
 
   @override

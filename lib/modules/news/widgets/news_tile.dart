@@ -1,6 +1,5 @@
 import 'package:boticario_app/modules/news/domain/models/news_model.dart';
 import 'package:flutter/material.dart';
-
 import '../../../common/formatters/date_format.dart';
 
 class NewsTile extends StatelessWidget {
@@ -34,12 +33,23 @@ class NewsTile extends StatelessWidget {
                     )),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
-                    "${news.user?.name}",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline5
-                        ?.copyWith(fontWeight: FontWeight.bold),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${news.user?.name}",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        formatData(news.message?.createdAt,
+                            format: 'dd/MM/y HH:mm'),
+                        textAlign: TextAlign.end,
+                        style: Theme.of(context).textTheme.caption,
+                      )
+                    ],
                   ),
                 )
               ],
@@ -52,11 +62,6 @@ class NewsTile extends StatelessWidget {
                 style: Theme.of(context).textTheme.subtitle1,
               ),
             ),
-            Text(
-              formatData(news.message?.createdAt, format: 'dd/MM/y HH:mm'),
-              textAlign: TextAlign.end,
-              style: Theme.of(context).textTheme.caption,
-            )
           ],
         ),
       ),

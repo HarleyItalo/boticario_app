@@ -109,7 +109,7 @@ class _LoginPageState extends State<LoginPage> {
 
     var reponse = await widget.controller.makeLogin();
     if (reponse) {
-      NavigationService.pushNamed(Routes.news);
+      NavigationService.pushNamed(Routes.allPosts);
       return;
     }
     AlertService.sendSnackBar(
