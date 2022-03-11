@@ -59,12 +59,12 @@ class _SplashPageState extends State<SplashPage>
                 return Opacity(
                   opacity: _animationOpacity.value,
                   child: Padding(
-                      padding: const EdgeInsets.all(40.0),
-                      child: Text(
-                        'Bem vindo ao Microblogging Boticário',
-                        textAlign: TextAlign.center,
-                        style: Theme.of(context).textTheme.headline5,
-                      )),
+                    padding: const EdgeInsets.all(40.0),
+                    child: Image.asset(
+                      'assets/images/splash.png',
+                      height: MediaQuery.of(context).size.height * 0.3,
+                    ),
+                  ),
                 );
               }),
           Padding(

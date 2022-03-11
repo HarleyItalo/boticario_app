@@ -1,16 +1,25 @@
 # boticario_app
 
-A new Flutter project.
+Teste prático - Mobile
 
-## Getting Started
+## Problema e oportunidade
+Para que seus colaboradores possam compartilhar ideias e pensamentos do dia a dia e saber das últimas novidades do Grupo Boticário, surgiu a ideia de criar um aplicativo no formato de microblogging.
 
-This project is a starting point for a Flutter application.
+Nele, os colaboradores poderão publicar posts de até 280 caracteres - compartilhando atualizações pessoais, de seus produtos, ideias e curiosidades, e também ver as postagens de seus colegas
+## Comandos Uteis
 
-A few resources to get you started if this is your first Flutter project:
+### Iniciar desenvolvimento
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+`flutter clean;flutter pub get;` 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Executar os testes automatizados.
+
+`flutter test`
+
+### Executar o app em modo debug
+
+`flutter run`
+
+##### Criar icone e splash
+`flutter pub run flutter_launcher_icons:main; flutter pub pub run flutter_native_splash:create`
+
