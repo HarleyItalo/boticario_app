@@ -1,5 +1,4 @@
 import 'package:boticario_app/common/controllers/base_controller.dart';
-import 'package:boticario_app/modules/login/domain/models/login_model.dart';
 import 'package:boticario_app/modules/news/domain/models/news_model.dart';
 import 'package:boticario_app/modules/register_user/domain/models/register_user_model.dart';
 import 'package:get/get.dart';

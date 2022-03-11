@@ -1,6 +1,4 @@
 import 'package:boticario_app/modules/register_user/domain/models/register_user_model.dart';
-
-import '../models/login_model.dart';
 import '../repositories/login_repository.dart';
 
 abstract class GetUserLogged {
