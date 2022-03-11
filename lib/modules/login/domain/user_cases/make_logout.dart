@@ -1,4 +1,3 @@
-import '../models/login_model.dart';
 import '../repositories/login_repository.dart';
 
 abstract class MakeLogout {

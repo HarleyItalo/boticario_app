@@ -6,6 +6,8 @@ abstract class IHttpService {
   Future<Map<String, dynamic>> post(url, data);
   Future<Map<String, dynamic>> put(url);
   Future<bool> delete(url);
+
+  Future<dynamic> getWithoutBaseUrl(url);
 }
 
 class DioHttpService implements IHttpService {
@@ -42,6 +44,15 @@ class DioHttpService implements IHttpService {
     var response = await _client.post("$baseUrl/$url.json");
     if (response.statusCode != 201) {
       throw RequestError("Put without success");
+    }
+    return response.data;
+  }
+
+  @override
+  Future getWithoutBaseUrl(url) async {
+    var response = await _client.get(url);
+    if (response.statusCode != 200) {
+      throw RequestError("Get without success");
     }
     return response.data;
   }

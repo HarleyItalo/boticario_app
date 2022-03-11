@@ -13,6 +13,7 @@ dependencies:
   get: ^4.6.1
   crypto: ^3.0.1
   shared_preferences: ^2.0.13
+  intl:
 
 dev_dependencies:
   flutter_test:
