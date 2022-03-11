@@ -27,10 +27,10 @@ class LoginRepositoryImpl implements LoginRepository {
   }
 
   @override
-  Future<LoginModel?> getUserLogged() async {
+  Future<UserModel?> getUserLogged() async {
     if (await StorageService.existsKey(loginKey)) {
       var data = await StorageService.getData(loginKey);
-      return LoginModel.fromJson(data);
+      return UserModel.fromJson(data);
     }
     return null;
   }

@@ -1,5 +1,7 @@
+import 'package:boticario_app/common/services/navigation_service.dart';
 import 'package:boticario_app/modules/posts/controllers/all_posts_controller.dart';
 import 'package:flutter/material.dart';
+import '../../app/routes/routes.dart';
 import '../widgets/drawer_menu.dart';
 
 class AllPostsPage extends StatefulWidget {
@@ -38,7 +40,9 @@ class _AllPostsPageState extends State<AllPostsPage> {
       ),
       floatingActionButton: FloatingActionButton(
           tooltip: 'Adicionar novo post',
-          onPressed: () {},
+          onPressed: () {
+            NavigationService.pushNamed(Routes.newPost);
+          },
           child: const Icon(Icons.add)),
     );
   }

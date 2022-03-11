@@ -1,6 +1,6 @@
 class PostModel {
   User? user;
-  String? createdAt;
+  DateTime? createdAt;
   String? content;
 
   PostModel({this.user, this.createdAt, this.content});

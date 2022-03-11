@@ -3,6 +3,6 @@ import 'package:boticario_app/modules/register_user/domain/models/register_user_
 
 abstract class LoginRepository {
   Future<UserModel?> findUser(LoginModel loginModel);
-  Future<LoginModel?> getUserLogged();
+  Future<UserModel?> getUserLogged();
   Future<bool> makeLogout();
 }

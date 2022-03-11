@@ -116,7 +116,8 @@ class _RegisterUserPageState extends State<RegisterUserPage> {
                       value: widget.controller.confirmationPass.value,
                       labelText: 'Confirme a Senha',
                       placeholder: '* * * *',
-                      validate: (value) => ValidateConfimationPassword()(
+                      validate: (value) =>
+                          ValidateConfimationPassword().compare(
                         value,
                         widget.controller.password.value,
                       ),

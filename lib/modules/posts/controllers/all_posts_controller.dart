@@ -1,21 +1,22 @@
 import 'package:boticario_app/common/controllers/base_controller.dart';
-import 'package:boticario_app/modules/login/domain/models/login_model.dart';
-import 'package:boticario_app/modules/news/domain/models/news_model.dart';
+import 'package:boticario_app/modules/posts/domain/models/post_model.dart';
+import 'package:boticario_app/modules/posts/domain/user_cases/get_posts.dart';
 import 'package:get/get.dart';
-import '../../login/domain/user_cases/check_if_is_logged.dart';
+import '../../login/domain/user_cases/get_user_logged.dart';
+import '../../register_user/domain/models/register_user_model.dart';
 
 class AllPostsController extends BaseController {
-  final CheckIfIsLogged checkIfIsLogged;
+  final GetUserLogged getUserLogged;
+  final GetPosts getPosts;
+  AllPostsController(this.getUserLogged, this.getPosts);
 
-  AllPostsController(this.checkIfIsLogged);
-
-  var userData = LoginModel().obs;
-  var news = NewsModel().obs;
+  var userData = UserModel().obs;
+  var posts = <PostModel>[].obs;
 
   @override
   init() async {
     loadingState();
-    var user = await checkIfIsLogged();
+    var user = await getUserLogged();
     userData.value = user!;
     succeedState();
   }

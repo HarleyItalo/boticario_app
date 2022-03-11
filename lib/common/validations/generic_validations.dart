@@ -1,4 +1,8 @@
 abstract class GenericValidations {
+  String? call(String? value) {
+    return null;
+  }
+
   bool emailIsValid(String? email) {
     if (isNullOrEmpty(email)) {
       return false;

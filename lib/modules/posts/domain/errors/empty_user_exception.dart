@@ -1,0 +1,1 @@
+class EmptyUserException implements Exception {}
