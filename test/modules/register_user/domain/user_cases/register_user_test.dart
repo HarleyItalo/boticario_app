@@ -1,4 +1,5 @@
 import 'package:boticario_app/common/services/http_service.dart';
+import 'package:boticario_app/modules/app/constants.dart';
 import 'package:boticario_app/modules/register_user/domain/errors/user_name_in_use_exception.dart';
 import 'package:boticario_app/modules/register_user/domain/user_cases/register_user.dart';
 import 'package:boticario_app/modules/register_user/infra/repositories/register_user_repository_impl.dart';
@@ -7,8 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   final dioClient = Dio();
-  final dioMock =
-      DioHttpService(dioClient, "https://622925e0be12fc4538979da3.mockapi.io/");
+  final dioMock = DioHttpService(dioClient, urlApi);
   final repository = RegisterUserRepositoryImpl(dioMock);
   final userCase = RegisterUserImpl(repository);
   test("deve falhar ao cadastrar o usuario ", () async {
@@ -35,7 +35,11 @@ void main() {
   });
   test('deve registrar um novo usuario', () async {
     var response = await userCase(
-        email: 'a', nome: 'h', userName: 'jonas', password: '123');
+      email: 'a',
+      nome: 'h',
+      userName: 'jonas',
+      password: '123',
+    );
     expect(await repository.deleteUser(response!), true);
     expect(response.isNotEmpty, true);
   });

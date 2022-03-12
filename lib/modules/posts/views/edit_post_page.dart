@@ -68,7 +68,7 @@ class _EditPostPageState extends State<EditPostPage> {
                 }
                 return DefaultButton(
                   onPress: editPost,
-                  buttonText: 'Publicar',
+                  buttonText: 'Atualizar publicação',
                 );
               }),
             ],
