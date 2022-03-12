@@ -10,17 +10,17 @@ void main() {
   final dioClient = Dio();
   final dioMock = DioHttpService(dioClient, urlApi);
   final repository = RegisterUserRepositoryImpl(dioMock);
-  final userCase = RegisterUserImpl(repository);
+  final registerUser = RegisterUserImpl(repository);
   test("deve falhar ao cadastrar o usuario ", () async {
     try {
-      var user = await userCase(
+      var user = await registerUser(
         email: 'a',
         nome: 'h',
         userName: 'harley',
         password: '123',
       );
 
-      var user1 = await userCase(
+      var user1 = await registerUser(
         email: 'a',
         nome: 'h',
         userName: 'harley',
@@ -34,7 +34,7 @@ void main() {
     }
   });
   test('deve registrar um novo usuario', () async {
-    var response = await userCase(
+    var response = await registerUser(
       email: 'a',
       nome: 'h',
       userName: 'jonas',

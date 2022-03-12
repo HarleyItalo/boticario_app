@@ -11,17 +11,26 @@ void main() {
   final repository = RegisterUserRepositoryImpl(dioMock);
   test("Deve registrar e deletar um novo usuario", () async {
     var response = await repository.registerUser(UserModel(
-        username: 'harley', nome: 'harley', email: 'harleyitalo@hotmail.com'));
+      username: 'harley',
+      nome: 'harley',
+      email: 'harleyitalo@hotmail.com',
+    ));
     expect(response.username == 'harley', true);
     expect(await repository.deleteUser(response.id!), true);
   });
 
   test("deve encontrar um usuario com esse nome", () async {
+    var user = await repository.registerUser(UserModel(
+      username: 'harley',
+      nome: 'harley',
+      email: 'harleyitalo@hotmail.com',
+    ));
     var response = await repository.userNameExists('harley');
     expect(response, true);
+    expect(await repository.deleteUser(user.id!), true);
   });
   test("Não deve encontar um usuario com ess nome", () async {
     var response = await repository.userNameExists('klajsldkajslkdjaslkd');
-    expect(response, true);
+    expect(response, false);
   });
 }
