@@ -59,6 +59,10 @@ class _AllPostsPageState extends State<AllPostsPage> {
                 }, childCount: widget.controller.posts.length));
               },
             ),
+            const SliverToBoxAdapter(
+                child: SizedBox(
+              height: 100,
+            ))
           ],
         ),
       ),

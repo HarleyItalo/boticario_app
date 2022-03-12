@@ -7,7 +7,7 @@ class PostsRepositoryImpl implements PostsRepository {
   PostsRepositoryImpl(this._httpService);
   final IHttpService _httpService;
   @override
-  Future<PostModel> sendPost(PostModel postModel) async {
+  Future<PostModel> insertPost(PostModel postModel) async {
     var result = await _httpService.post('posts', postModel);
     return PostModel.fromJson(result);
   }
@@ -22,5 +22,17 @@ class PostsRepositoryImpl implements PostsRepository {
       }
     }
     return itens;
+  }
+
+  @override
+  Future<bool> deletePost(String id) async {
+    var result = await _httpService.delete('posts/$id');
+    return result;
+  }
+
+  @override
+  Future<PostModel> updatePost(String id, PostModel postModel) async {
+    var result = await _httpService.put('posts', postModel);
+    return PostModel.fromJson(result);
   }
 }

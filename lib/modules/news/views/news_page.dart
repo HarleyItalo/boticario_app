@@ -24,35 +24,38 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            title: Text('Novidades'),
-          ),
-          Observable(
-            () {
-              if (widget.controller.stateEqualsTo(ControllerState.loading)) {
-                return const SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Center(child: CircularProgressIndicator()),
-                  ),
-                );
-              }
+      body: RefreshIndicator(
+        onRefresh: () => widget.controller.init(),
+        child: CustomScrollView(
+          slivers: [
+            const SliverAppBar(
+              title: Text('Novidades'),
+            ),
+            Observable(
+              () {
+                if (widget.controller.stateEqualsTo(ControllerState.loading)) {
+                  return const SliverToBoxAdapter(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20),
+                      child: Center(child: CircularProgressIndicator()),
+                    ),
+                  );
+                }
 
-              return SliverList(
-                  delegate: SliverChildBuilderDelegate((context, index) {
-                var info = widget.controller.news.value.news?[index];
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: NewsTile(
-                    news: info!,
-                  ),
-                );
-              }, childCount: widget.controller.news.value.news?.length ?? 0));
-            },
-          ),
-        ],
+                return SliverList(
+                    delegate: SliverChildBuilderDelegate((context, index) {
+                  var info = widget.controller.news.value.news?[index];
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: NewsTile(
+                      news: info!,
+                    ),
+                  );
+                }, childCount: widget.controller.news.value.news?.length ?? 0));
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 abstract class IHttpService {
   Future<dynamic> get(url);
   Future<Map<String, dynamic>> post(url, data);
-  Future<Map<String, dynamic>> put(url);
+  Future<Map<String, dynamic>> put(url, data);
   Future<bool> delete(url);
 
   Future<dynamic> getWithoutBaseUrl(url);
@@ -40,8 +40,8 @@ class DioHttpService implements IHttpService {
   }
 
   @override
-  Future<Map<String, dynamic>> put(url) async {
-    var response = await _client.post("$baseUrl/$url.json");
+  Future<Map<String, dynamic>> put(url, data) async {
+    var response = await _client.put("$baseUrl/$url", data: data);
     if (response.statusCode != 201) {
       throw RequestError("Put without success");
     }

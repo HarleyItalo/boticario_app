@@ -61,6 +61,8 @@ class PostTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 20.0),
               child: Text(
                 "${post.content}",
+                maxLines: 6,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.start,
                 style: Theme.of(context).textTheme.subtitle1,
               ),

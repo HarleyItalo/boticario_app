@@ -43,11 +43,6 @@ class DrawerMenu extends StatelessWidget {
                 title: "Novidades GB",
               ),
               MenuItemTile(
-                icon: Icons.new_releases,
-                action: () {},
-                title: "Postagens",
-              ),
-              MenuItemTile(
                 title: "Sair",
                 action: () {
                   var logout = DependencyService.instance<MakeLogout>();
