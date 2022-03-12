@@ -21,10 +21,11 @@ class CreatePostImpl extends CreatePost {
     }
     var user = User(
       username: userModel.username,
+      nome: userModel.nome,
       profilePicture: userModel.profilePicture,
     );
-    var postModel =
-        PostModel(user: user, content: post, createdAt: DateTime.now());
+    var postModel = PostModel(
+        user: user, content: post, createdAt: DateTime.now().toString());
     return await _repository.sendPost(postModel);
   }
 }

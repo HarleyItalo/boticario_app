@@ -1,7 +1,9 @@
 import 'package:boticario_app/common/dependency_inject/dependency_inject.dart';
 import 'package:boticario_app/common/module/base_module.dart';
 import 'package:boticario_app/modules/posts/controllers/all_posts_controller.dart';
+import 'package:boticario_app/modules/posts/controllers/new_post_controller.dart';
 import 'package:boticario_app/modules/posts/domain/repositories/posts_repository.dart';
+import 'package:boticario_app/modules/posts/domain/user_cases/create_post.dart';
 import 'package:boticario_app/modules/posts/infra/repositories/posts_repository.dart';
 import 'package:boticario_app/modules/posts/views/all_posts_page.dart';
 
@@ -20,6 +22,12 @@ class PostsModule implements BaseModule {
     DependencyService.lazyRegister(AllPostsPage(
       controller: DependencyService.instance(),
     ));
-    DependencyService.lazyRegister(NewPostPage());
+    DependencyService.lazyRegister<CreatePost>(CreatePostImpl(
+        DependencyService.instance(), DependencyService.instance()));
+    DependencyService.lazyRegister(
+        NewPostsController(DependencyService.instance()));
+    DependencyService.lazyRegister(NewPostPage(
+      controller: DependencyService.instance(),
+    ));
   }
 }

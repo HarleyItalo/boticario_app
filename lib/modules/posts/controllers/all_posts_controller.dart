@@ -17,7 +17,13 @@ class AllPostsController extends BaseController {
   init() async {
     loadingState();
     var user = await getUserLogged();
-    userData.value = user!;
+    if (user == null) {
+      errorState();
+      return;
+    }
+    userData.value = user;
+    var allPosts = await getPosts();
+    posts.value = allPosts;
     succeedState();
   }
 }
