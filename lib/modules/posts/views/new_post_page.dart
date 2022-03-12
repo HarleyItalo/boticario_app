@@ -8,10 +8,14 @@ import 'package:flutter/material.dart';
 
 import '../../../common/enuns/controller_state.dart';
 import '../../../common/widgets/observable.dart';
+import '../controllers/all_posts_controller.dart';
 
 class NewPostPage extends StatefulWidget {
   final NewPostsController controller;
-  const NewPostPage({Key? key, required this.controller}) : super(key: key);
+  final AllPostsController allPostsController;
+  const NewPostPage(
+      {Key? key, required this.controller, required this.allPostsController})
+      : super(key: key);
 
   @override
   State<NewPostPage> createState() => _NewPostPageState();
@@ -61,11 +65,12 @@ class _NewPostPageState extends State<NewPostPage> {
     );
   }
 
-  sendPost() {
+  sendPost() async {
     if (_formKey.currentState?.validate() == false) {
       return;
     }
-    widget.controller.sendPost();
+    var post = await widget.controller.sendPost();
+    widget.allPostsController.posts.add(post);
     AlertService.sendSnackBar(
         context: context, message: "Post criado", onPressed: () {});
     NavigationService.pop();

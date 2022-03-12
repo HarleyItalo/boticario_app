@@ -14,8 +14,9 @@ class NewPostsController extends BaseController {
 
   sendPost() async {
     loadingState();
-    createPost(post: content.value);
+    var post = await createPost(post: content.value);
     succeedState();
+    return post;
   }
 
   @override

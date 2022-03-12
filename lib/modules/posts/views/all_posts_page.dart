@@ -53,7 +53,7 @@ class _AllPostsPageState extends State<AllPostsPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: PostTile(
                       post: info,
-                      loggedUser: widget.controller.userData.value,
+                      controller: widget.controller,
                     ),
                   );
                 }, childCount: widget.controller.posts.length));

@@ -4,6 +4,7 @@ import 'package:boticario_app/modules/posts/controllers/all_posts_controller.dar
 import 'package:boticario_app/modules/posts/controllers/new_post_controller.dart';
 import 'package:boticario_app/modules/posts/domain/repositories/posts_repository.dart';
 import 'package:boticario_app/modules/posts/domain/user_cases/create_post.dart';
+import 'package:boticario_app/modules/posts/domain/user_cases/delete_post.dart';
 import 'package:boticario_app/modules/posts/infra/repositories/posts_repository.dart';
 import 'package:boticario_app/modules/posts/views/all_posts_page.dart';
 
@@ -17,8 +18,14 @@ class PostsModule implements BaseModule {
         PostsRepositoryImpl(DependencyService.instance()));
     DependencyService.lazyRegister<GetPosts>(
         GetPostsImpl(DependencyService.instance()));
-    DependencyService.lazyRegister(AllPostsController(
+
+    DependencyService.lazyRegister<DeletePost>(DeletePostImpl(
         DependencyService.instance(), DependencyService.instance()));
+
+    DependencyService.lazyRegister(AllPostsController(
+        DependencyService.instance(),
+        DependencyService.instance(),
+        DependencyService.instance()));
     DependencyService.lazyRegister(AllPostsPage(
       controller: DependencyService.instance(),
     ));
@@ -27,6 +34,7 @@ class PostsModule implements BaseModule {
     DependencyService.lazyRegister(
         NewPostsController(DependencyService.instance()));
     DependencyService.lazyRegister(NewPostPage(
+      allPostsController: DependencyService.instance(),
       controller: DependencyService.instance(),
     ));
   }

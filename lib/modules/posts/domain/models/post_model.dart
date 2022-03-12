@@ -1,13 +1,15 @@
 class PostModel {
+  String? id;
   User? user;
   String? createdAt;
   String? content;
 
-  PostModel({this.user, this.createdAt, this.content});
+  PostModel({this.id, this.user, this.createdAt, this.content});
 
   PostModel.fromJson(Map<String, dynamic> json) {
     user = json['user'] != null ? User.fromJson(json['user']) : null;
     createdAt = json['createdAt'];
+    id = json['id'];
     content = json['content'];
   }
 
@@ -18,6 +20,7 @@ class PostModel {
     }
     data['createdAt'] = createdAt;
     data['content'] = content;
+    data['id'] = id;
     return data;
   }
 }
