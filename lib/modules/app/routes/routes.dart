@@ -5,6 +5,7 @@ import 'package:boticario_app/modules/posts/views/new_post_page.dart';
 import 'package:boticario_app/modules/register_user/views/register_user_page.dart';
 import 'package:boticario_app/modules/splash/views/splash_page.dart';
 import '../../../common/dependency_inject/dependency_inject.dart';
+import '../../posts/views/edit_post_page.dart';
 
 class Routes {
   static const String splash = "/";
@@ -13,6 +14,7 @@ class Routes {
   static const String news = '/news';
   static const String allPosts = '/posts';
   static const String newPost = '/posts/new';
+  static const String editPost = 'posts/edit';
 
   static get getRoutes => {
         splash: (_) => DependencyService.instance<SplashPage>(),
@@ -20,6 +22,7 @@ class Routes {
         register: (_) => DependencyService.instance<RegisterUserPage>(),
         news: (_) => DependencyService.instance<NewsPage>(),
         allPosts: (_) => DependencyService.instance<AllPostsPage>(),
-        newPost: (_) => DependencyService.instance<NewPostPage>()
+        newPost: (_) => DependencyService.instance<NewPostPage>(),
+        editPost: (_) => DependencyService.instance<EditPostPage>()
       };
 }

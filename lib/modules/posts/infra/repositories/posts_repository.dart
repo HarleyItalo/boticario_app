@@ -32,7 +32,7 @@ class PostsRepositoryImpl implements PostsRepository {
 
   @override
   Future<PostModel> updatePost(String id, PostModel postModel) async {
-    var result = await _httpService.put('posts', postModel);
+    var result = await _httpService.put('posts/$id', postModel);
     return PostModel.fromJson(result);
   }
 }

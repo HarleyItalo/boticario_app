@@ -1,4 +1,6 @@
 import 'package:boticario_app/common/services/alert_service.dart';
+import 'package:boticario_app/common/services/navigation_service.dart';
+import 'package:boticario_app/modules/app/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../../../common/formatters/date_format.dart';
 import '../controllers/all_posts_controller.dart';
@@ -72,7 +74,7 @@ class PostTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () => editPost(context, post),
                     icon: const Icon(
                       Icons.edit,
                       color: Colors.amber,
@@ -102,5 +104,9 @@ class PostTile extends StatelessWidget {
         context: context,
         message: "Post excluido com sucesso.",
         onPressed: () {});
+  }
+
+  editPost(context, post) {
+    NavigationService.pushNamed(Routes.editPost, args: post);
   }
 }

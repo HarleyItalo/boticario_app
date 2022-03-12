@@ -5,27 +5,15 @@ import 'package:boticario_app/modules/posts/domain/repositories/posts_repository
 import '../models/post_model.dart';
 
 abstract class EditPost {
-  Future<PostModel> call({required String id, required String post});
+  Future<PostModel> call({required String id, required PostModel post});
 }
 
 class EditPostImpl extends EditPost {
-  final GetUserLogged getUserLogged;
   final PostsRepository _repository;
-  EditPostImpl(this._repository, this.getUserLogged);
+  EditPostImpl(this._repository);
 
   @override
-  Future<PostModel> call({required String id, required String post}) async {
-    var userModel = await getUserLogged();
-    if (userModel == null) {
-      throw EmptyUserException();
-    }
-    var user = User(
-      username: userModel.username,
-      nome: userModel.nome,
-      profilePicture: userModel.profilePicture,
-    );
-    var postModel = PostModel(
-        user: user, content: post, createdAt: DateTime.now().toString());
-    return await _repository.updatePost(id, postModel);
+  Future<PostModel> call({required String id, required PostModel post}) async {
+    return await _repository.updatePost(id, post);
   }
 }

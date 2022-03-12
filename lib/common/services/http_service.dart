@@ -42,7 +42,7 @@ class DioHttpService implements IHttpService {
   @override
   Future<Map<String, dynamic>> put(url, data) async {
     var response = await _client.put("$baseUrl/$url", data: data);
-    if (response.statusCode != 201) {
+    if (response.statusCode != 200) {
       throw RequestError("Put without success");
     }
     return response.data;
