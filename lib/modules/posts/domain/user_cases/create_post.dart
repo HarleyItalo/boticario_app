@@ -26,6 +26,6 @@ class CreatePostImpl extends CreatePost {
     );
     var postModel = PostModel(
         user: user, content: post, createdAt: DateTime.now().toString());
-    return await _repository.sendPost(postModel);
+    return await _repository.insertPost(postModel);
   }
 }
