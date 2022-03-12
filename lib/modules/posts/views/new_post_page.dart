@@ -34,34 +34,37 @@ class _NewPostPageState extends State<NewPostPage> {
         ),
       ),
       body: SingleChildScrollView(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: Column(
-          children: [
-            Form(
-              key: _formKey,
-              child: TextInputWidget(
-                autoFocus: true,
-                labelText: 'Digite aqui suas ideias!',
-                minLines: 1,
-                maxLines: 10,
-                maxLength: 280,
-                validate: (value) => ValidatePost()(value),
-                onChanged: widget.controller.setContent,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            children: [
+              Form(
+                key: _formKey,
+                child: TextInputWidget(
+                  autoFocus: true,
+                  labelText: 'Digite aqui suas ideias!',
+                  minLines: 1,
+                  maxLines: 10,
+                  maxLength: 280,
+                  validate: (value) => ValidatePost()(value),
+                  onChanged: widget.controller.setContent,
+                ),
               ),
-            ),
-            Observable(() {
-              if (widget.controller.stateEqualsTo(ControllerState.loading)) {
-                return const Center(child: CircularProgressIndicator());
-              }
-              return DefaultButton(
-                onPress: sendPost,
-                buttonText: 'Publicar',
-              );
-            }),
-          ],
+              Observable(() {
+                if (widget.controller.stateEqualsTo(
+                  ControllerState.loading,
+                )) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return DefaultButton(
+                  onPress: sendPost,
+                  buttonText: 'Publicar',
+                );
+              }),
+            ],
+          ),
         ),
-      )),
+      ),
     );
   }
 
@@ -72,7 +75,10 @@ class _NewPostPageState extends State<NewPostPage> {
     var post = await widget.controller.sendPost();
     widget.allPostsController.posts.add(post);
     AlertService.sendSnackBar(
-        context: context, message: "Post criado", onPressed: () {});
+      context: context,
+      message: "Post criado",
+      onPressed: () {},
+    );
     NavigationService.pop();
   }
 }

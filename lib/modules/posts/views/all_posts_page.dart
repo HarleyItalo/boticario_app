@@ -47,16 +47,20 @@ class _AllPostsPageState extends State<AllPostsPage> {
                 }
 
                 return SliverList(
-                    delegate: SliverChildBuilderDelegate((context, index) {
-                  var info = widget.controller.posts[index];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: PostTile(
-                      post: info,
-                      controller: widget.controller,
-                    ),
-                  );
-                }, childCount: widget.controller.posts.length));
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      var info = widget.controller.posts[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: PostTile(
+                          post: info,
+                          controller: widget.controller,
+                        ),
+                      );
+                    },
+                    childCount: widget.controller.posts.length,
+                  ),
+                );
               },
             ),
             const SliverToBoxAdapter(
