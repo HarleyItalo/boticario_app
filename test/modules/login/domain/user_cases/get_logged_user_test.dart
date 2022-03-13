@@ -2,7 +2,7 @@ import 'package:boticario_app/common/services/http_service.dart';
 import 'package:boticario_app/modules/app/constants.dart';
 import 'package:boticario_app/modules/login/domain/errors/not_logged_exception.dart';
 import 'package:boticario_app/modules/login/domain/user_cases/get_user_logged.dart';
-import 'package:boticario_app/modules/login/domain/user_cases/make_login_user_case.dart';
+import 'package:boticario_app/modules/login/domain/user_cases/make_login.dart';
 import 'package:boticario_app/modules/login/infra/repositories/login_repository_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';

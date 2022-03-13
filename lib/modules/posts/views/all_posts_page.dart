@@ -1,5 +1,6 @@
 import 'package:boticario_app/common/services/navigation_service.dart';
 import 'package:boticario_app/modules/posts/controllers/all_posts_controller.dart';
+import 'package:boticario_app/modules/posts/widgets/no_posts.dart';
 import 'package:boticario_app/modules/posts/widgets/post_tile.dart';
 import 'package:flutter/material.dart';
 import '../../../common/enuns/controller_state.dart';
@@ -45,7 +46,9 @@ class _AllPostsPageState extends State<AllPostsPage> {
                     ),
                   );
                 }
-
+                if (widget.controller.posts.isEmpty) {
+                  return const SliverToBoxAdapter(child: NoPosts());
+                }
                 return SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (context, index) {

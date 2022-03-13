@@ -10,14 +10,12 @@ class AlertService {
       SnackBar(
         content: Text(
           message,
+          style: Theme.of(context).textTheme.subtitle1,
         ),
         duration: const Duration(seconds: 5),
         backgroundColor: error ? Colors.redAccent : Colors.greenAccent,
         action: SnackBarAction(
-          label: "Ok",
-          textColor: error ? Colors.white : Colors.black,
-          onPressed: onPressed,
-        ),
+            label: "Ok", onPressed: onPressed, textColor: Colors.black),
         behavior: SnackBarBehavior.fixed,
       ),
     );

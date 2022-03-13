@@ -29,14 +29,15 @@ class PostTile extends StatelessWidget {
               direction: Axis.horizontal,
               crossAxisAlignment: WrapCrossAlignment.center,
               children: [
-                ClipRRect(
-                    borderRadius: BorderRadius.circular(50),
-                    child: Image.network(
-                      "${post.user?.profilePicture}",
-                      height: 50,
-                      width: 50,
-                      fit: BoxFit.cover,
-                    )),
+                if (post.user?.profilePicture != null)
+                  ClipRRect(
+                      borderRadius: BorderRadius.circular(50),
+                      child: Image.network(
+                        "${post.user?.profilePicture}",
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                      )),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Column(
