@@ -1,5 +1,8 @@
+import 'dart:io';
 import 'package:boticario_app/common/errors/request_error.dart';
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class IHttpService {
   Future<dynamic> get(url);
@@ -11,7 +14,16 @@ abstract class IHttpService {
 }
 
 class DioHttpService implements IHttpService {
-  DioHttpService(this._client, this.baseUrl);
+  DioHttpService(this._client, this.baseUrl) {
+    if (!kIsWeb) {
+      (_client.httpClientAdapter as DefaultHttpClientAdapter)
+          .onHttpClientCreate = (HttpClient client) {
+        client.badCertificateCallback =
+            (X509Certificate cert, String host, int port) => true;
+        return client;
+      };
+    }
+  }
   final String baseUrl;
   final Dio _client;
 

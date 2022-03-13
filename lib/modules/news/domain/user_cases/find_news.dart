@@ -12,6 +12,10 @@ class FindNewsImpl extends FindNews {
 
   @override
   Future<NewsModel> call() async {
-    return await _repository.findBoticatioNews();
+    try {
+      return await _repository.findBoticatioNews();
+    } catch (e) {
+      return NewsModel();
+    }
   }
 }

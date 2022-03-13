@@ -20,6 +20,6 @@ Nele, os colaboradores poderão publicar posts de até 280 caracteres - comparti
 
 `flutter run`
 
-##### Criar icone e splash
+#### Criar icone e splash
 `flutter pub run flutter_launcher_icons:main; flutter pub pub run flutter_native_splash:create`
 

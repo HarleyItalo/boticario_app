@@ -1,5 +1,6 @@
 import 'package:boticario_app/common/enuns/controller_state.dart';
 import 'package:boticario_app/common/widgets/observable.dart';
+import 'package:boticario_app/modules/news/widgets/empty_news.dart';
 import 'package:boticario_app/modules/news/widgets/news_tile.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +41,10 @@ class _NewsPageState extends State<NewsPage> {
                       child: Center(child: CircularProgressIndicator()),
                     ),
                   );
+                }
+
+                if (widget.controller.news.value.news == null) {
+                  return const SliverToBoxAdapter(child: EmptyNews());
                 }
 
                 return SliverList(
